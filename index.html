@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<head>
+	<script src="./createTable.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+
+	<header>
+		<h1>Maquette de tableaux</h1>
+	</header>
+	<div id="JQUERY">
+		<table id="tableToFill">
+
+		</table>
+	</div>
+	<div id="DIV4">
+		<table id="tableToFill2">
+
+		</table>
+	</div>
+
+</body>
+
+<script>
+	const maTableGenerator = new CreateTable("tableToFill", 100, 100, 2, 100);
+	const maTableGenerator2 = new CreateTable("tableToFill2", 100, 100, 2, 100);
+	maTableGenerator.generate();
+	maTableGenerator2.generate();
+	$(document).ready(function () {
+		$('tbody').scroll(function (e) { //detect a scroll event on the tbody
+			/*
+				Setting the thead left value to the negative valule of tbody.scrollLeft will make it track the movement
+				of the tbody element. Setting an elements left value to that of the tbody.scrollLeft left makes it maintain
+				it's relative position at the left of the table.    
+			*/
+			$('#tableToFill thead').css("left", -$("tbody").scrollLeft()); //fix the thead relative to the body scrolling
+			$('#tableToFill thead th:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first cell of the header
+			$('#tableToFill tbody td:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first column of tdbody
+		});
+	});
+</script>
+
+<style>
+	body {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	#JQUERY,
+	#DIV4 {
+		width: 50%;
+		height: 50%;
+	}
+
+	#DIV4 {
+		display: none;
+	}
+
+	#JQUERY table {
+		position: relative;
+		width: 700px;
+		background-color: #aaa;
+		overflow: hidden;
+		border-collapse: collapse;
+	}
+
+
+	/*thead*/
+	#JQUERY thead {
+		position: relative;
+		display: block;
+		/*seperates the header from the body allowing it to be positioned*/
+		width: 700px;
+		overflow: visible;
+	}
+
+	#JQUERY thead th {
+		background-color: #99a;
+		min-width: 120px;
+		height: 32px;
+		border: 1px solid #222;
+	}
+
+	#JQUERY thead th:nth-child(1) {
+		/*first cell in the header*/
+		position: relative;
+		display: block;
+		/*seperates the first cell in the header from the header*/
+		background-color: #88b;
+	}
+
+
+	/*tbody*/
+	#JQUERY tbody {
+		position: relative;
+		display: block;
+		/*seperates the tbody from the header*/
+		width: 700px;
+		height: 239px;
+		overflow: scroll;
+	}
+
+	#JQUERY tbody td {
+		background-color: #bbc;
+		min-width: 120px;
+		border: 1px solid #222;
+	}
+
+	#JQUERY tbody tr td:nth-child(1) {
+		/*the first cell in each tr*/
+		position: relative;
+		display: block;
+		/*seperates the first column from the tbody*/
+		height: 40px;
+		background-color: #99a;
+	}
+</style>
