@@ -12,30 +12,52 @@ body {
     position: relative;
     width: 80vw;
     height: 80vh;
-    overflow: auto;
+}
+
+.panelContainer,
+.headerContainer,
+.topLeftContainer {
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow: hidden;
 }
 
 .headerContainer {
-    position: absolute;
     z-index: 1;
 }
 
-.bodyContainer {
-    position: absolute;
-    z-index: 0;
+.panelContainer {
+    z-index: 2;
 }
 
+.topLeftContainer {
+    z-index: 3;
+}
 
-.headerTable td {
+.bodyContainer {
+    overflow: auto;
+}
+
+.bodyTable thead,
+.bodyTable .toFreeze {
+    display: hidden;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
     border: 1px solid;
     background-color: #332940;
 }
 
-.bodyTable td {
-    border: 1px solid;
-    background-color: #1F1B24;
+.topLeftContainer th {
+    background-color: #3c1969;
 }
 
-table {
-    table-layout: fixed;
+td {
+    border: 1px solid;
+    background-color: #1F1B24;
 }

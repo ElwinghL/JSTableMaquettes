@@ -12,16 +12,18 @@
 	</header>
 	<main>
 		<div id="mainContainer" class="mainContainer">
-			<header id="headerContainer" class="headerContainer"></header>
-			<main id="bodyContainer" class="bodyContainer"></main>
+			<div id="headerContainer" class="headerContainer"></div>
+			<div id="panelContainer" class="panelContainer"></div>
+			<div id="topLeftContainer" class="topLeftContainer"></div>
+			<div id="bodyContainer" class="bodyContainer"></div>
 		</div>
 	</main>
 
 </body>
 <script>
+	var myGenerator;
 	document.addEventListener("DOMContentLoaded", function () {
-		var myGenerator = new CreateTable("mainContainer", 2000, 50, 2);
+		myGenerator = new CreateTable("mainContainer", 1000, 50, 2, 2);
 		myGenerator.generate();
-		myGenerator.container.addEventListener("scroll", myGenerator.onScrollContainer.bind(myGenerator));
 	})
 </script>
