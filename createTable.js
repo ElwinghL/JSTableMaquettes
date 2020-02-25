@@ -78,17 +78,10 @@ CreateTable.prototype.createTheMainTable = function () {
 			if (hLine) {
 				var hCell = document.createElementSpec("th", null, null, this.loremIpsum(i + j));
 				hLine.appendChild(hCell);
-				hCell.addEventListener("click", test)
-				if (j < this.nbCtF) {
-					hCell.className += "toFreeze ";
-				}
 			}
 			if (line) {
 				var cell = line.insertCell();
 				cell.innerHTML = this.loremIpsum(i + j);
-				if (j < this.nbCtF) {
-					cell.className += "toFreeze ";
-				}
 			}
 
 		}
