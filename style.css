@@ -20,7 +20,11 @@ body {
     top: 0;
     left: 0;
     position: absolute;
-    overflow: hidden;
+    overflow: auto;
+    -ms-overflow-style: none;
+    /* IE */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .headerContainer {

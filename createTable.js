@@ -15,9 +15,20 @@ var CreateTable = function (mainContainerID, nbLignes, nbColonnes, nbHLignes, nb
 		return loremIpsum[index % loremIpsum.length];
 	};
 
-	this.bodyContainer.addEventListener("scroll", function () {
+	this.bodyContainer.addEventListener("scroll", function (event) {
 		this.headerContainer.scrollLeft = this.bodyContainer.scrollLeft;
 		this.panelContainer.scrollTop = this.bodyContainer.scrollTop;
+	}.bind(this), false);
+
+	this.container.addEventListener("wheel", function (event) {
+		var delta = event.deltaY * 25;
+		if (event.shiftKey) {
+			this.bodyContainer.scrollTo(this.bodyContainer.scrollLeft + delta, this.bodyContainer.scrollTop);
+			return;
+		}
+		this.bodyContainer.scrollTo(this.bodyContainer.scrollLeft, this.bodyContainer.scrollTop + delta);
+		event.preventDefault();
+		event.stopPropagation();
 	}.bind(this), false);
 };
 
@@ -183,6 +194,10 @@ HTMLElement.prototype.clear = function () {
 	}
 }
 
-function test() {
-	alert("T'as cliqué sur le header");
+function redirectEvent(eventType, fromElement, toElement) {
+	fromElement.addEventListener(eventType, function (event) {
+		toElement.dispatchEvent(new event.constructor(event.type, event));
+		event.preventDefault();
+		event.stopPropagation();
+	});
 }
